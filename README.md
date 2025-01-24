@@ -1,0 +1,1 @@
+# trading-assistant-gr2-api
