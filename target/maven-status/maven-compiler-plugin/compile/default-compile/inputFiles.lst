@@ -1,2 +1,3 @@
-/Users/gabriel/Documents/M1 INFO/S8/trading-assistant-gr2-api/src/main/java/com/traderalerting/MainApplication.java
-/Users/gabriel/Documents/M1 INFO/S8/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/SecurityConfig.java
+/home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/CorsConfig.java
+/home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/MainApplication.java
+/home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/SecurityConfig.java
