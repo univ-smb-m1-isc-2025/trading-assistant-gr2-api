@@ -13,8 +13,9 @@ public class YahooFinanceService {
 
     private final OkHttpClient client = new OkHttpClient();
 
-    public JSONObject getStockHistory(String symbol) throws IOException {
-        String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=1mo";
+    public JSONObject getStockHistory(String symbol, String range) throws IOException {
+        // Modify the URL to include the dynamic range
+        String url = "https://query1.finance.yahoo.com/v8/finance/chart/" + symbol + "?interval=1d&range=" + range;
         
         Request request = new Request.Builder()
                 .url(url)

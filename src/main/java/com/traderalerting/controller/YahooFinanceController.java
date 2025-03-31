@@ -18,9 +18,10 @@ public class YahooFinanceController {
     }
 
     @GetMapping("/history/{symbol}")
-    public String getStockHistory(@PathVariable String symbol) {
+    public String getStockHistory(@PathVariable String symbol, @RequestParam String range) {
         try {
-            JSONObject data = yahooFinanceService.getStockHistory(symbol);
+            // Pass the range parameter to the service method
+            JSONObject data = yahooFinanceService.getStockHistory(symbol, range);
             return data.toString(4); // Format JSON bien affiché
         } catch (IOException e) {
             return "Erreur : " + e.getMessage();
