@@ -1,22 +1,23 @@
 version: "3.8"
 
 services:
-  mongo:
-    image: mongo
-    container_name: mongo_trader
-    ports:
-      - "27017:27017"
+  postgres:
+    image: postgres:16-alpine
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
+      POSTGRES_USER: "root"
+      POSTGRES_PASSWORD: "root"
+      POSTGRES_DB: "trader_db"
+    ports:
+      - "5432:5432"
 
-  backend:
+  trader-backend:
     build: .
-    container_name: trader_backend
     ports:
       - "8080:8080"
     depends_on:
-      - mongo
+      - postgres
     environment:
-      SPRING_DATA_MONGODB_URI: mongodb://admin:password@mongo:27017/trader_alerting
-      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/trader_db"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
