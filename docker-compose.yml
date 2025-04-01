@@ -14,9 +14,18 @@ services:
     build: .
     container_name: trader_backend
     ports:
-      - "8080:8080"
+      - "${SERVER_PORT}:${SERVER_PORT}"
     depends_on:
       - mongo
     environment:
+<<<<<<< Updated upstream
       SPRING_DATA_MONGODB_URI: mongodb://admin:password@mongo:27017/trader_alerting
       SPRING_PROFILES_ACTIVE: docker
+=======
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/trader_db"
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+
+      SERVER_PORT: ${SERVER_PORT}
+>>>>>>> Stashed changes

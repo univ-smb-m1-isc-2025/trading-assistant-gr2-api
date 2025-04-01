@@ -13,7 +13,11 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
+<<<<<<< Updated upstream
                         .allowedOrigins("http://localhost:5173","www.berich.oups.net/","https://www.berich.oups.net")
+=======
+                        .allowedOrigins("http://localhost:5173","https://www.berich.oups.net")
+>>>>>>> Stashed changes
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
