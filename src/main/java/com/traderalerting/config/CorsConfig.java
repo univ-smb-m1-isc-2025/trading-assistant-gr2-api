@@ -18,8 +18,8 @@ public class CorsConfig /* implements WebMvcConfigurer */ {
         CorsConfiguration corsConfig = new CorsConfiguration();
 
         // --- Adapter les origines ici ---
-        corsConfig.addAllowedOrigin("http://localhost:5173");          // Pour vos tests locaux frontend
-        corsConfig.addAllowedOrigin("https://www.beRich.oups.net");     // L'URL de VOTRE frontend déployé (HTTPS!)
+        corsConfig.addAllowedOrigin("http://localhost:5173"); // Pour vos tests locaux frontend
+        corsConfig.addAllowedOrigin("https://www.berich.oups.net"); // L'URL de VOTRE frontend déployé (HTTPS!)
         // Remplacez par les URLs exactes si elles sont différentes
 
         // Autoriser les méthodes nécessaires (incluant OPTIONS pour preflight)
@@ -42,5 +42,6 @@ public class CorsConfig /* implements WebMvcConfigurer */ {
 
     // Si vous aviez d'AUTRES configurations dans addCorsMappings ou ailleurs dans
     // cette classe en tant que WebMvcConfigurer, il faudra les déplacer
-    // ou les gérer autrement. Sinon, vous pouvez supprimer 'implements WebMvcConfigurer'.
+    // ou les gérer autrement. Sinon, vous pouvez supprimer 'implements
+    // WebMvcConfigurer'.
 }
