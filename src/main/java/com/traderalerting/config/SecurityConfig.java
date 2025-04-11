@@ -56,12 +56,17 @@ public class SecurityConfig {
             .cors(withDefaults())
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz -> authz
-                    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                    // Autoriser l'enregistrement et la connexion sans authentification
-                    .requestMatchers("/api/register", "/api/login", "/error").permitAll()
-                    // Toutes les autres requêtes nécessitent une authentification
-                    .anyRequest().authenticated()
+                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .requestMatchers(
+                    "/api/register",
+                    "/api/login",
+                    "/api/hello",
+                    "/finance/history/**",
+                    "/error"
+                ).permitAll()
+                .anyRequest().authenticated()
             )
+
             // Configuration de la session : STATELESS car on utilise JWT
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             // Fournir le provider d'authentification
