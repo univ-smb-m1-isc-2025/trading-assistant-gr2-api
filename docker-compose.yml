@@ -12,24 +12,31 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 
+    healthcheck:
+      # Commande pour vérifier si Postgres est prêt
+      # pg_isready tourne DANS le conteneur postgres, donc on utilise localhost
+      test: ["CMD-SHELL", "pg_isready -U root -d trader_db -h localhost"]
+      interval: 5s # Vérifier toutes les 5 secondes
+      timeout: 5s # Attendre 5 secondes max pour la réponse
+      retries: 5 # Réessayer 5 fois avant de marquer comme 'unhealthy'
 
   # Service pour votre backend Spring Boot
   trader-backend:
-    container_name: local_trader_backend 
+    container_name: local_trader_backend
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "${SERVER_PORT}:${SERVER_PORT}"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/trader_db"
-      SPRING_DATASOURCE_USERNAME: "root" 
-      SPRING_DATASOURCE_PASSWORD: "root" 
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update" 
-
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       SERVER_PORT: ${SERVER_PORT}
-
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION}

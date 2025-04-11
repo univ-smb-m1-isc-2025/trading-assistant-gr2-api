@@ -60,9 +60,11 @@ public class SecurityConfig {
                 .requestMatchers(
                     "/api/register",
                     "/api/login",
+                    "/api/auth/google",
                     "/api/hello",
                     "/finance/history/**",
-                    "/error"
+                    "/error",
+                    "/"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
