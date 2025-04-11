@@ -1,26 +1,9 @@
-# Utiliser une image contenant OpenJDK 17 et Maven
-FROM maven:3.8.6-amazoncorretto-17 AS build
+FROM openjdk:21-jdk-slim
 
-# Définir le répertoire de travail
 WORKDIR /app
 
-# Copier le fichier pom.xml et télécharger les dépendances
-COPY pom.xml ./
-RUN mvn dependency:go-offline -B
+COPY target/trader-alerting-backend-1.0.0.jar app.jar
 
-# Copier tout le projet et compiler
-COPY . .
-RUN mvn clean package -DskipTests
-
-# Étape finale avec une image légère de Java 17
-FROM amazoncorretto:17-alpine
-WORKDIR /app
-
-# Copier l'application compilée
-COPY --from=build /app/target/*.jar app.jar
-
-# Exposer le port 8080
 EXPOSE 8080
 
-# Commande pour exécuter l'application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
