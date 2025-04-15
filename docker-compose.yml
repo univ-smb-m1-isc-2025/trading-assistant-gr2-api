@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${VIRTUAL_PORT}:${VIRTUAL_PORT}"
     depends_on:
       - postgres
     environment:
@@ -29,7 +29,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: "root" 
       SPRING_JPA_HIBERNATE_DDL_AUTO: "update" 
 
-      SERVER_PORT: ${SERVER_PORT}
+      SERVER_PORT: ${VIRTUAL_PORT}
 
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRATION_MS: ${JWT_EXPIRATION}
