@@ -64,7 +64,8 @@ public class SecurityConfig {
                     "/api/hello",
                     "/finance/history/**",
                     "/error",
-                    "/"
+                    "/",
+                    "/api/email/send"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
