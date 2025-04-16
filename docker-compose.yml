@@ -1,7 +1,7 @@
 services:
   # Service pour la base de données PostgreSQL
   postgres:
-    image: postgres:16-alpine 
+    image: postgres:16-alpine
     container_name: local_postgres_trader
     environment:
       POSTGRES_USER: "root"
@@ -33,9 +33,10 @@ services:
         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/trader_db"
-      SPRING_DATASOURCE_USERNAME: "root" 
-      SPRING_DATASOURCE_PASSWORD: "root" 
-      SPRING_JPA_HIBERNATE_DDL_AUTO: "update" 
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "root"
+      SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
 
       SERVER_PORT: ${VIRTUAL_PORT}
 
