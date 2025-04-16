@@ -17,6 +17,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
+
+    @Autowired 
+    public UserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository; // Injection via le constructeur
+    }
+
     @Override
     @Transactional(readOnly = true) // Important pour les opérations de lecture liées à JPA
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -3,39 +3,61 @@ package com.traderalerting.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull; // Pour l'enum
 import jakarta.validation.constraints.Size;
-import lombok.Data; // Lombok: Generates getters, setters, toString, etc.
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "app_users") // "user" might be a reserved keyword in SQL
-@Data // Lombok
-@NoArgsConstructor // Lombok
+@Table(name = "app_users")
+@Data
+@NoArgsConstructor
 public class User {
 
+    public enum AuthProvider {
+        LOCAL, GOOGLE // Ajoutez d'autres providers si besoin (Facebook, etc.)
+    }
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Use IDENTITY for Postgres auto-increment
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Username cannot be blank")
-    @Size(min = 3, max = 50, message = "Username must be between 3 and 50 characters")
+    // Garder unique=true si vous voulez un seul compte par username
     @Column(nullable = false, unique = true, length = 50)
+    @NotBlank // Garder si username toujours requis
+    @Size(min = 3, max = 50)
     private String username;
 
-    @NotBlank(message = "Email cannot be blank")
-    @Email(message = "Please provide a valid email address")
     @Column(nullable = false, unique = true, length = 100)
+    @NotBlank
+    @Email
     private String email;
 
-    @NotBlank(message = "Password cannot be blank")
-    // We don't set a size limit here as the hashed password will be longer
-    @Column(nullable = false)
-    private String password; // Store the HASHED password
+    @Column(nullable = true) // <-- RENDRE NULLABLE (ou gérer autrement)
+    private String password; // Null pour les utilisateurs Google
 
-    // Constructors (Lombok generates @NoArgsConstructor, add @AllArgsConstructor if needed)
+    @Column(unique = true, nullable = true) // ID unique fourni par Google
+    private String googleId;
+
+    @NotNull // Important d'avoir un provider
+    @Enumerated(EnumType.STRING) // Stocke l'enum comme String (LOCAL, GOOGLE)
+    @Column(nullable = false)
+    private AuthProvider authProvider;
+
+    // Garder ce constructeur si utile pour les tests ou autre
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
-        this.password = password; // Remember this should be the hashed password before saving
+        this.password = password;
+        this.authProvider = AuthProvider.LOCAL; // Par défaut LOCAL pour ce constructeur
+    }
+
+    // Constructeur spécifique pour Google (exemple)
+    public User(String username, String email, String googleId, AuthProvider provider) {
+        this.username = username;
+        this.email = email;
+        this.googleId = googleId;
+        this.authProvider = provider;
+        this.password = null; // Pas de mot de passe local
     }
 }
