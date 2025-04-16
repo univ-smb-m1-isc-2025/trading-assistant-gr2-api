@@ -5,7 +5,6 @@
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/service/YahooFinanceService.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/MainApplication.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/RestTemplateConfig.java
-/home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/tests/StockAlertServiceTest.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/service/StockAlertService.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/entity/User.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/CorsConfig.java

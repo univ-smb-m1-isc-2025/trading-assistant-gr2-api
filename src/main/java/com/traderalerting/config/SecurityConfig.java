@@ -65,7 +65,8 @@ public class SecurityConfig {
                     "/finance/history/**",
                     "/error",
                     "/",
-                    "/api/email/send"
+                    "/api/email/send",
+                    "/alerts/increase/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
