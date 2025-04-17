@@ -64,7 +64,15 @@ public class SecurityConfig {
                     "/api/hello",
                     "/finance/history/**",
                     "/error",
-                    "/"
+                    "/",
+                    "/api/email/send",
+                    "/alerts/increase/**",
+                    "/alerts/variation/**",
+                    "/alerts/batch-variation",
+                    "/finance/seuil/**",
+                    "/finance/ma-crossover/**",
+                    "/finance/ma-crossover/signals/**",
+                    "/finance/dragonfly-doji/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )
