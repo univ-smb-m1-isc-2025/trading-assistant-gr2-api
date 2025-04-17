@@ -39,3 +39,7 @@ services:
 
       JWT_SECRET: ${JWT_SECRET}
       JWT_EXPIRATION_MS: 3600000
+    depends_on:
+      postgres:
+        condition: service_healthy 
+    

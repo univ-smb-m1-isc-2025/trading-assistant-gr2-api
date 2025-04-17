@@ -1,5 +1,6 @@
 package com.traderalerting.scheduler;
 
+import com.traderalerting.repository.UserRepository;
 import com.traderalerting.service.*;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import com.traderalerting.entity.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -101,6 +103,9 @@ public class CAC40AlertScheduler {
     
     @Autowired
     private EmailService emailService;
+
+    @Autowired
+    private UserRepository userRepository;
     
     // Email de l'utilisateur pour recevoir les alertes
     @Value("charriersim@gmail.com")
@@ -165,39 +170,57 @@ public class CAC40AlertScheduler {
         logger.info("Analyse des actions du CAC40 terminée - {}", 
                 LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     }
+
+    
     
     /**
-     * Envoie des notifications par email pour chaque alerte déclenchée
-     */
-    private void sendEmailNotifications(Map<String, Map<String, Object>> alertResults) {
-        logger.info("Envoi des notifications par email pour {} actions", alertResults.size());
+ * Envoie des notifications par email pour chaque alerte déclenchée aux utilisateurs qui ont cette action en favoris
+ */
+private void sendEmailNotifications(Map<String, Map<String, Object>> alertResults) {
+    logger.info("Préparation des notifications par email pour {} actions", alertResults.size());
+    
+    for (Map.Entry<String, Map<String, Object>> entry : alertResults.entrySet()) {
+        String symbol = entry.getKey();
+        Map<String, Object> alerts = entry.getValue();
+        String companyName = COMPANY_NAMES.getOrDefault(symbol, symbol);
         
-        for (Map.Entry<String, Map<String, Object>> entry : alertResults.entrySet()) {
-            String symbol = entry.getKey();
-            Map<String, Object> alerts = entry.getValue();
-            String companyName = COMPANY_NAMES.getOrDefault(symbol, symbol);
+        // Récupérer les utilisateurs qui ont cette action en favoris
+        List<User> usersWithFavorite = userRepository.findUsersByFavoriteTicker(symbol);
+        logger.info("Action {} en alerte: {} utilisateurs concernés", symbol, usersWithFavorite.size());
+        
+        if (usersWithFavorite.isEmpty()) {
+            logger.info("Aucun utilisateur n'a {} en favoris, aucun email envoyé", symbol);
+            continue;
+        }
+        
+        for (Map.Entry<String, Object> alertEntry : alerts.entrySet()) {
+            String alertType = alertEntry.getKey();
+            Map<String, Object> alertInfo = (Map<String, Object>) alertEntry.getValue();
             
-            for (Map.Entry<String, Object> alertEntry : alerts.entrySet()) {
-                String alertType = alertEntry.getKey();
-                Map<String, Object> alertInfo = (Map<String, Object>) alertEntry.getValue();
+            boolean triggered = (boolean) alertInfo.get("triggered");
+            
+            if (triggered) {
+                // Obtenir l'ID de l'alerte
+                int alerteId = ALERT_TYPE_IDS.getOrDefault(alertType, 0);
                 
-                boolean triggered = (boolean) alertInfo.get("triggered");
-                
-                if (triggered) {
-                    // Obtenir l'ID de l'alerte
-                    int alerteId = ALERT_TYPE_IDS.getOrDefault(alertType, 0);
-                    
-                    try {
-                        // Envoyer l'email d'alerte
-                        emailService.sendAlerteMail(alertsRecipientEmail, companyName, alerteId);
-                        logger.info("Email d'alerte envoyé pour {} - Type d'alerte: {}", companyName, alertType);
-                    } catch (Exception e) {
-                        logger.error("Erreur lors de l'envoi de l'email pour {}: {}", companyName, e.getMessage());
+                // Envoyer l'email à chaque utilisateur concerné
+                for (User user : usersWithFavorite) {
+                    if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+                        try {
+                            // Envoyer l'email d'alerte
+                            emailService.sendAlerteMail(user.getEmail(), companyName, alerteId);
+                            logger.info("Email d'alerte envoyé à {} pour {} - Type d'alerte: {}", 
+                                    user.getEmail(), companyName, alertType);
+                        } catch (Exception e) {
+                            logger.error("Erreur lors de l'envoi de l'email à {} pour {}: {}", 
+                                    user.getEmail(), companyName, e.getMessage());
+                        }
                     }
                 }
             }
         }
     }
+}
     
     private void checkPriceVariation(String symbol, Map<String, Object> stockAlerts) {
         try {
@@ -321,6 +344,8 @@ public class CAC40AlertScheduler {
             stockAlerts.put("thresholdAlert", alertInfo);
         }
     }
+
+    
     
     private void logAlertResults(Map<String, Map<String, Object>> alertResults) {
         logger.info("==== ALERTES DÉTECTÉES - {} ====", LocalDate.now());
