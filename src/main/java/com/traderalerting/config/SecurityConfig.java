@@ -66,7 +66,9 @@ public class SecurityConfig {
                     "/error",
                     "/",
                     "/api/email/send",
-                    "/alerts/increase/**"
+                    "/alerts/increase/**",
+                    "/alerts/variation/**",
+                    "/alerts/batch-variation"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

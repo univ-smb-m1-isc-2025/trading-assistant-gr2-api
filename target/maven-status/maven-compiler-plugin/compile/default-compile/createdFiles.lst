@@ -1,5 +1,6 @@
 com/traderalerting/entity/User.class
 com/traderalerting/service/UserDetailsServiceImpl.class
+com/traderalerting/service/PriceAlertService.class
 com/traderalerting/repository/UserRepository.class
 com/traderalerting/registration/controller/UserController.class
 com/traderalerting/dto/AuthResponse.class
@@ -7,10 +8,13 @@ com/traderalerting/MainApplication.class
 com/traderalerting/service/EmailService.class
 com/traderalerting/registration/controller/AuthController.class
 com/traderalerting/registration/exception/UserAlreadyExistsException.class
+com/traderalerting/controller/PriceAlertController$BatchCheckRequest.class
 com/traderalerting/controller/StockAlertController.class
+com/traderalerting/controller/PriceAlertController.class
 com/traderalerting/config/SecurityConfig.class
 com/traderalerting/security/JwtAuthenticationFilter.class
 com/traderalerting/config/CorsConfig.class
+com/traderalerting/service/PriceAlertService$PriceVariationResult.class
 com/traderalerting/dto/UserRegistrationDto.class
 com/traderalerting/entity/User$AuthProvider.class
 com/traderalerting/service/StockAlertService.class
