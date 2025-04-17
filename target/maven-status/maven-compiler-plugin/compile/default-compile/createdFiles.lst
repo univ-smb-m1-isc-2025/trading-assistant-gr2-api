@@ -11,6 +11,7 @@ com/traderalerting/registration/controller/AuthController.class
 com/traderalerting/registration/exception/UserAlreadyExistsException.class
 com/traderalerting/controller/PriceAlertController$BatchCheckRequest.class
 com/traderalerting/controller/StockAlertController.class
+com/traderalerting/controller/MovingAverageCrossoverController.class
 com/traderalerting/controller/PriceAlertController.class
 com/traderalerting/config/SecurityConfig.class
 com/traderalerting/security/JwtAuthenticationFilter.class
@@ -26,6 +27,7 @@ com/traderalerting/security/JwtService.class
 com/traderalerting/HelloController.class
 com/traderalerting/controller/EmailController$EmailRequest.class
 com/traderalerting/service/YahooFinanceService.class
+com/traderalerting/service/MovingAverageCrossoverService.class
 com/traderalerting/config/RestTemplateConfig.class
 com/traderalerting/dto/LoginRequest.class
 com/traderalerting/dto/GoogleTokenDto.class

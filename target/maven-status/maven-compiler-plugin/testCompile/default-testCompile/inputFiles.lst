@@ -1,3 +1,4 @@
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/test/java/com/traderalerting/service/PriceAlertServiceTest.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/test/java/com/traderalerting/service/StockAlertServiceTest.java
 /home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/test/java/com/traderalerting/service/AlertThresholdServiceTest.java
+/home/simon/Documents/FAC/M1/S2/INFO803/PROJET/trading-assistant-gr2-api/src/test/java/com/traderalerting/service/MovingAverageCrossoverServiceTest.java

@@ -69,7 +69,9 @@ public class SecurityConfig {
                     "/alerts/increase/**",
                     "/alerts/variation/**",
                     "/alerts/batch-variation",
-                    "/finance/seuil/**"
+                    "/finance/seuil/**",
+                    "/finance/ma-crossover/**",
+                    "/finance/ma-crossover/signals/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

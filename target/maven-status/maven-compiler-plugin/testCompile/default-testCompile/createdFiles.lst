@@ -1,3 +1,4 @@
 com/traderalerting/service/StockAlertServiceTest.class
 com/traderalerting/service/PriceAlertServiceTest.class
+com/traderalerting/service/MovingAverageCrossoverServiceTest.class
 com/traderalerting/service/AlertThresholdServiceTest.class
