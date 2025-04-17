@@ -1,8 +1,8 @@
-package com.traderalerting.registration.controller;
+package com.traderalerting.controller;
 
 
 import com.traderalerting.dto.UserRegistrationDto;
-import com.traderalerting.registration.exception.UserAlreadyExistsException;
+import com.traderalerting.exception.UserAlreadyExistsException;
 import com.traderalerting.service.UserService;
 import com.traderalerting.entity.User;
 

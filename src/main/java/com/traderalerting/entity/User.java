@@ -1,63 +1,76 @@
 package com.traderalerting.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull; // Pour l'enum
-import jakarta.validation.constraints.Size;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_users")
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(exclude = "favorites")
 public class User {
-
+    
+    // Définir l'enum à l'intérieur de la classe
     public enum AuthProvider {
-        LOCAL, GOOGLE // Ajoutez d'autres providers si besoin (Facebook, etc.)
+        LOCAL, GOOGLE
     }
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // Garder unique=true si vous voulez un seul compte par username
+    
     @Column(nullable = false, unique = true, length = 50)
-    @NotBlank // Garder si username toujours requis
-    @Size(min = 3, max = 50)
     private String username;
-
+    
     @Column(nullable = false, unique = true, length = 100)
-    @NotBlank
-    @Email
     private String email;
-
-    @Column(nullable = true) // <-- RENDRE NULLABLE (ou gérer autrement)
-    private String password; // Null pour les utilisateurs Google
-
-    @Column(unique = true, nullable = true) // ID unique fourni par Google
+    
+    @Column(nullable = true)
+    private String password;
+    
+    @Column(unique = true, nullable = true)
     private String googleId;
-
-    @NotNull // Important d'avoir un provider
-    @Enumerated(EnumType.STRING) // Stocke l'enum comme String (LOCAL, GOOGLE)
+    
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AuthProvider authProvider;
-
-    // Garder ce constructeur si utile pour les tests ou autre
+    
+    // Relation ManyToMany pour les favoris
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "user_favorites",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "symbol_id")
+    )
+    private Set<Symbol> favorites = new HashSet<>();
+    
+    // Constructeur pour inscription locale
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.authProvider = AuthProvider.LOCAL; // Par défaut LOCAL pour ce constructeur
+        this.authProvider = AuthProvider.LOCAL;
     }
-
-    // Constructeur spécifique pour Google (exemple)
+    
+    // Constructeur pour OAuth
     public User(String username, String email, String googleId, AuthProvider provider) {
         this.username = username;
         this.email = email;
         this.googleId = googleId;
         this.authProvider = provider;
-        this.password = null; // Pas de mot de passe local
+    }
+    
+    // Méthodes helper pour la gestion des favoris
+    public void addFavorite(Symbol symbol) {
+        this.favorites.add(symbol);
+    }
+    
+    public void removeFavorite(Symbol symbol) {
+        this.favorites.remove(symbol);
     }
 }
