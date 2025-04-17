@@ -68,7 +68,8 @@ public class SecurityConfig {
                     "/api/email/send",
                     "/alerts/increase/**",
                     "/alerts/variation/**",
-                    "/alerts/batch-variation"
+                    "/alerts/batch-variation",
+                    "/finance/seuil/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

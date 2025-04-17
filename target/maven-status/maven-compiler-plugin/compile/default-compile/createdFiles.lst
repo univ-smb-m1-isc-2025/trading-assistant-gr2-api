@@ -1,3 +1,4 @@
+com/traderalerting/controller/AlertThresholdController.class
 com/traderalerting/entity/User.class
 com/traderalerting/service/UserDetailsServiceImpl.class
 com/traderalerting/service/PriceAlertService.class
@@ -17,6 +18,7 @@ com/traderalerting/config/CorsConfig.class
 com/traderalerting/service/PriceAlertService$PriceVariationResult.class
 com/traderalerting/dto/UserRegistrationDto.class
 com/traderalerting/entity/User$AuthProvider.class
+com/traderalerting/service/AlertThresholdService.class
 com/traderalerting/service/StockAlertService.class
 com/traderalerting/controller/YahooFinanceController.class
 com/traderalerting/controller/EmailController.class
