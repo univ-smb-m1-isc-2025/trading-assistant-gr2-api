@@ -46,6 +46,7 @@ com/traderalerting/dto/AddFavoriteRequest.class
 com/traderalerting/dto/SymbolDto.class
 com/traderalerting/controller/FavController.class
 com/traderalerting/exception/UserAlreadyExistsException.class
+com/traderalerting/controller/StarController.class
 com/traderalerting/config/SecurityConfig.class
 com/traderalerting/security/JwtAuthenticationFilter.class
 com/traderalerting/config/CorsConfig.class

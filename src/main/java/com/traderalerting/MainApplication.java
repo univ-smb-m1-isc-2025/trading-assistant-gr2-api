@@ -53,6 +53,7 @@ class HelloController {
             return ResponseEntity.status(401).body("Non authentifié");
         }
 
+
         String ticker = request.get("ticker");
         if (ticker == null || ticker.trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Le ticker est requis");

@@ -53,6 +53,7 @@
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/service/FavoriteService.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/init/SymbolDataInitializer.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/security/JwtAuthenticationFilter.java
+/Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/controller/StarController.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/dto/AuthResponse.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/init/DatabaseInitializer.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/entity/Symbol.java
