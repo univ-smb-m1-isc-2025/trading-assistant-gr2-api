@@ -36,13 +36,16 @@ class StockAlertServiceTest {
         JSONObject resultObj = new JSONObject();
         JSONObject indicators = new JSONObject();
         JSONArray quote = new JSONArray();
+        JSONObject quoteObj = new JSONObject();
         JSONArray closePrices = new JSONArray();
 
         // Sample prices: yesterday = 100, today = 110 (10% increase)
         closePrices.put(100.0);
         closePrices.put(110.0);
 
-        quote.put(closePrices);
+        // Corrected structure to match Yahoo Finance API
+        quoteObj.put("close", closePrices);
+        quote.put(quoteObj);
         indicators.put("quote", quote);
         resultObj.put("indicators", indicators);
         result.put(resultObj);
@@ -99,7 +102,8 @@ class StockAlertServiceTest {
         // Test with exactly the threshold percentage
         JSONArray closePrices = mockStockHistory.getJSONObject("chart")
                 .getJSONArray("result").getJSONObject(0)
-                .getJSONObject("indicators").getJSONArray("quote").getJSONArray(0);
+                .getJSONObject("indicators").getJSONArray("quote")
+                .getJSONObject(0).getJSONArray("close");
 
         // Set prices for exactly 5% increase (100 -> 105)
         closePrices.put(0, 100.0);

@@ -107,7 +107,7 @@ public class CAC40AlertScheduler {
     private String alertsRecipientEmail;
     
     // Paramètres par défaut pour les alertes
-    private static final double PRICE_VARIATION_THRESHOLD = 5.0;
+    private static final double PRICE_VARIATION_THRESHOLD = 7.5;
     private static final int PRICE_VARIATION_DAYS = 5;
     private static final double STOCK_INCREASE_THRESHOLD = 3.0;
     private static final double ALERT_THRESHOLD = 2.0;
@@ -130,19 +130,19 @@ public class CAC40AlertScheduler {
             
             try {
                 // 1. Vérification des variations de prix
-                //checkPriceVariation(symbol, stockAlerts);
+                checkPriceVariation(symbol, stockAlerts);
                 
                 // 2. Vérification des motifs de chandelier (Dragonfly Doji)
-                //checkCandlePatterns(symbol, stockAlerts);
+                checkCandlePatterns(symbol, stockAlerts);
                 
                 // 3. Vérification des croisements de moyennes mobiles
-                //checkMovingAverageCrossover(symbol, stockAlerts);
+                checkMovingAverageCrossover(symbol, stockAlerts);
                 
                 // 4. Vérification des augmentations de prix
                 checkStockIncrease(symbol, stockAlerts);
                 
                 // 5. Vérification des seuils d'alerte
-                //checkAlertThreshold(symbol, stockAlerts);
+                checkAlertThreshold(symbol, stockAlerts);
                 
                 // Si au moins une alerte est déclenchée, ajouter aux résultats
                 if (stockAlerts.values().stream().anyMatch(v -> (boolean)((Map<String, Object>)v).get("triggered"))) {
