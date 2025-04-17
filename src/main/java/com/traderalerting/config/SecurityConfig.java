@@ -71,7 +71,8 @@ public class SecurityConfig {
                     "/alerts/batch-variation",
                     "/finance/seuil/**",
                     "/finance/ma-crossover/**",
-                    "/finance/ma-crossover/signals/**"
+                    "/finance/ma-crossover/signals/**",
+                    "/finance/dragonfly-doji/**"
                 ).permitAll()
                 .anyRequest().authenticated()
             )

@@ -9,11 +9,13 @@ com/traderalerting/MainApplication.class
 com/traderalerting/service/EmailService.class
 com/traderalerting/registration/controller/AuthController.class
 com/traderalerting/registration/exception/UserAlreadyExistsException.class
+com/traderalerting/service/CandlePatternService.class
 com/traderalerting/controller/PriceAlertController$BatchCheckRequest.class
 com/traderalerting/controller/StockAlertController.class
 com/traderalerting/controller/MovingAverageCrossoverController.class
 com/traderalerting/controller/PriceAlertController.class
 com/traderalerting/config/SecurityConfig.class
+com/traderalerting/controller/CandlePatternController.class
 com/traderalerting/security/JwtAuthenticationFilter.class
 com/traderalerting/config/CorsConfig.class
 com/traderalerting/service/PriceAlertService$PriceVariationResult.class
