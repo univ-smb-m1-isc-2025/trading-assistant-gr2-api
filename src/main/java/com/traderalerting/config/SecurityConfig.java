@@ -63,7 +63,6 @@ public class SecurityConfig {
                     "/finance/history/**",
                     "/api/favorites/test", // Endpoint de test public
                     "/error",
-<<<<<<< HEAD
                     "/",
                     "/api/email/send",
                     "/alerts/increase/**",
@@ -78,16 +77,6 @@ public class SecurityConfig {
             )
 
             // Configuration de la session : STATELESS car on utilise JWT
-=======
-                    "/api/star/test",
-                    "/api/fav/test", 
-                    "/api/hello-favorites",
-                    "/"
-                )
-                .permitAll()
-                // Tous les autres endpoints nécessitent une authentification
-                .anyRequest().authenticated())
->>>>>>> style
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
