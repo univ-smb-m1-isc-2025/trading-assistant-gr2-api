@@ -25,6 +25,7 @@ com/traderalerting/service/UserDetailsServiceImpl.class
 com/traderalerting/service/PriceAlertService.class
 com/traderalerting/service/FavoriteService.class
 com/traderalerting/dto/AuthResponse.class
+com/traderalerting/scheduler/CAC40AlertScheduler.class
 com/traderalerting/controller/TestApiController.class
 com/traderalerting/MainApplication.class
 com/traderalerting/controller/AuthController.class
@@ -45,4 +46,5 @@ com/traderalerting/HelloController.class
 com/traderalerting/service/MovingAverageCrossoverService.class
 com/traderalerting/repository/SymbolRepository.class
 com/traderalerting/dto/LoginRequest.class
+com/traderalerting/controller/ManualScanController.class
 com/traderalerting/dto/GoogleTokenDto.class

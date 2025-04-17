@@ -3,7 +3,9 @@
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/dto/AddFavoriteRequest.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/dto/SymbolDto.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/SecurityConfig.java
+/Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/scheduler/CAC40AlertScheduler.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/service/UserService.java
+/Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/controller/ManualScanController.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/config/CorsConfig.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/security/JwtService.java
 /Applications/MAMP/htdocs/trading-assistant-gr2-api/src/main/java/com/traderalerting/controller/CandlePatternController.java

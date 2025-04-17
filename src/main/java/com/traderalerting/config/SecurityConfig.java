@@ -61,7 +61,7 @@ public class SecurityConfig {
                     "/api/auth/google",
                     "/api/hello",
                     "/finance/history/**",
-                    "/api/favorites/test", // Endpoint de test public
+                    "/api/favorites/test", 
                     "/error",
                     "/",
                     "/api/email/send",
@@ -71,7 +71,8 @@ public class SecurityConfig {
                     "/finance/seuil/**",
                     "/finance/ma-crossover/**",
                     "/finance/ma-crossover/signals/**",
-                    "/finance/dragonfly-doji/**"
+                    "/finance/dragonfly-doji/**",
+                    "/api/scan/cac40"
                 ).permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/user/delete").authenticated()
                 .anyRequest().authenticated()
