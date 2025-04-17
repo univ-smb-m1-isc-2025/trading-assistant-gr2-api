@@ -130,7 +130,7 @@ public class CAC40AlertScheduler {
             
             try {
                 // 1. Vérification des variations de prix
-                checkPriceVariation(symbol, stockAlerts);
+                //checkPriceVariation(symbol, stockAlerts);
                 
                 // 2. Vérification des motifs de chandelier (Dragonfly Doji)
                 //checkCandlePatterns(symbol, stockAlerts);
