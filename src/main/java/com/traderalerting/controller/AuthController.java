@@ -1,4 +1,4 @@
-package com.traderalerting.registration.controller;
+package com.traderalerting.controller;
 
 import com.traderalerting.dto.LoginRequest;
 import com.traderalerting.dto.AuthResponse;

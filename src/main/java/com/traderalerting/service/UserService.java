@@ -2,7 +2,7 @@ package com.traderalerting.service;
 
 // --- Imports existants ---
 import com.traderalerting.dto.UserRegistrationDto;
-import com.traderalerting.registration.exception.UserAlreadyExistsException;
+import com.traderalerting.exception.UserAlreadyExistsException;
 import com.traderalerting.entity.User;
 import com.traderalerting.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

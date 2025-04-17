@@ -1,10 +1,15 @@
+<<<<<<< HEAD
 com/traderalerting/controller/AlertThresholdController.class
+=======
+com/traderalerting/init/DatabaseInitializer.class
+>>>>>>> style
 com/traderalerting/entity/User.class
 com/traderalerting/service/UserDetailsServiceImpl.class
 com/traderalerting/service/PriceAlertService.class
 com/traderalerting/repository/UserRepository.class
-com/traderalerting/registration/controller/UserController.class
+com/traderalerting/service/FavoriteService.class
 com/traderalerting/dto/AuthResponse.class
+<<<<<<< HEAD
 com/traderalerting/MainApplication.class
 com/traderalerting/service/EmailService.class
 com/traderalerting/registration/controller/AuthController.class
@@ -32,6 +37,31 @@ com/traderalerting/service/YahooFinanceService.class
 com/traderalerting/service/MovingAverageCrossoverService.class
 com/traderalerting/config/RestTemplateConfig.class
 com/traderalerting/dto/LoginRequest.class
+=======
+com/traderalerting/controller/TestApiController.class
+com/traderalerting/MainApplication.class
+com/traderalerting/controller/AuthController.class
+com/traderalerting/entity/Symbol.class
+com/traderalerting/dto/AddFavoriteRequest.class
+com/traderalerting/dto/SymbolDto.class
+com/traderalerting/controller/FavController.class
+com/traderalerting/exception/UserAlreadyExistsException.class
+com/traderalerting/config/SecurityConfig.class
+com/traderalerting/security/JwtAuthenticationFilter.class
+com/traderalerting/config/CorsConfig.class
+com/traderalerting/dto/UserRegistrationDto.class
+com/traderalerting/init/SymbolDataInitializer.class
+com/traderalerting/entity/User$AuthProvider.class
+com/traderalerting/controller/YahooFinanceController.class
+com/traderalerting/security/JwtService.class
+com/traderalerting/HelloController.class
+com/traderalerting/service/YahooFinanceService.class
+com/traderalerting/controller/UserController.class
+com/traderalerting/repository/SymbolRepository.class
+com/traderalerting/dto/LoginRequest.class
+com/traderalerting/config/RestTemplateConfig.class
+>>>>>>> style
 com/traderalerting/dto/GoogleTokenDto.class
 com/traderalerting/service/UserService.class
 com/traderalerting/config/CorsConfig$1.class
+com/traderalerting/controller/FavoriteController.class
