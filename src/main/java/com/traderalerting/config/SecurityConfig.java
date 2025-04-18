@@ -73,7 +73,8 @@ public class SecurityConfig {
                     "/finance/ma-crossover/signals/**",
                     "/finance/dragonfly-doji/**",
                     "/api/scan/cac40",
-                    "/api/star/**"
+                    "/api/star/**",
+                    "/api/star"
                 ).permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/user/delete").authenticated()
                 .anyRequest().authenticated()
