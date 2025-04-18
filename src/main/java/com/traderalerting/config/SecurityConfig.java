@@ -72,13 +72,13 @@ public class SecurityConfig {
                     "/finance/ma-crossover/**",
                     "/finance/ma-crossover/signals/**",
                     "/finance/dragonfly-doji/**",
-                    "/api/scan/cac40"
+                    "/api/scan/cac40",
+                    "/api/star/**"
                 ).permitAll()
                 .requestMatchers(HttpMethod.DELETE, "/api/user/delete").authenticated()
                 .anyRequest().authenticated()
             )
 
-            // Configuration de la session : STATELESS car on utilise JWT
             
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider())

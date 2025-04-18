@@ -13,12 +13,10 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
 
     healthcheck:
-      # Commande pour vérifier si Postgres est prêt
-      # pg_isready tourne DANS le conteneur postgres, donc on utilise localhost
       test: ["CMD-SHELL", "pg_isready -U root -d trader_db -h localhost"]
-      interval: 5s # Vérifier toutes les 5 secondes
-      timeout: 5s # Attendre 5 secondes max pour la réponse
-      retries: 5 # Réessayer 5 fois avant de marquer comme 'unhealthy'
+      interval: 5s 
+      timeout: 5s 
+      retries: 5 
 
   # Service pour votre backend Spring Boot
   trader-backend:
