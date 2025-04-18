@@ -15,7 +15,6 @@ import java.util.Set;
 @EqualsAndHashCode(exclude = "favorites")
 public class User {
     
-    // Définir l'enum à l'intérieur de la classe
     public enum AuthProvider {
         LOCAL, GOOGLE
     }

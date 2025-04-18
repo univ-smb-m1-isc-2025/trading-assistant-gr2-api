@@ -106,6 +106,6 @@ class AlertThresholdServiceTest {
 
         assertNotNull(result);
         assertEquals("AAPL", result.getString("symbol"));
-        assertFalse(result.getBoolean("alert")); // not > threshold
+        assertFalse(result.getBoolean("alert")); 
     }
 }

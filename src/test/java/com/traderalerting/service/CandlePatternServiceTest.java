@@ -86,7 +86,7 @@ class CandlePatternServiceTest {
         // Assert
         assertNotNull(matches);
         assertFalse(matches.isEmpty(), "Should detect at least one Dragonfly Doji");
-        assertEquals(1, matches.size()); // only 1 matches our test
+        assertEquals(1, matches.size()); 
     }
 
     @Test

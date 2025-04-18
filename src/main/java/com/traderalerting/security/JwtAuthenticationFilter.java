@@ -16,13 +16,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-@Component // Important pour que le filtre soit un bean géré par Spring
+@Component 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtService jwtService;
     @Autowired
-    private UserDetailsService userDetailsService; // Utilisez l'interface ici
+    private UserDetailsService userDetailsService; 
 
     @Override
     protected void doFilterInternal(
@@ -54,7 +54,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                      // Créer un objet Authentication
                      UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                              userDetails,
-                             null, // Pas besoin de credentials ici car on se base sur le token
+                             null, 
                              userDetails.getAuthorities()
                      );
                      // Ajouter les détails de la requête web
@@ -65,8 +65,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
              }
              filterChain.doFilter(request, response);
         } catch (Exception e) {
-            // En cas d'erreur de parsing ou de validation du token, ne pas authentifier et laisser la chaîne continuer
-            // On pourrait logger l'erreur ici
             logger.warn("Could not process JWT token: " + e.getMessage());
             filterChain.doFilter(request, response);
         }

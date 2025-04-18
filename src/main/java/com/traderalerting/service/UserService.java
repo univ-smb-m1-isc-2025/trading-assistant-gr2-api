@@ -30,8 +30,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
-    // Injectez JwtService pour générer votre token applicatif
-    private final com.traderalerting.security.JwtService jwtService; // Assurez le bon import
+    private final com.traderalerting.security.JwtService jwtService; 
 
     @Value("${google.client.id}") // Injectez l'ID client Google
     private String googleClientId;
@@ -61,18 +60,16 @@ public class UserService {
         newUser.setUsername(registrationDto.getUsername());
         newUser.setEmail(registrationDto.getEmail());
         newUser.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-        newUser.setAuthProvider(User.AuthProvider.LOCAL); // Spécifie LOCAL
+        newUser.setAuthProvider(User.AuthProvider.LOCAL); 
 
         return userRepository.save(newUser);
     }
 
-    // --- NOUVELLE Méthode pour traiter le token Google ---
     @Transactional
     public String processGoogleToken(String googleIdTokenString) throws Exception {
         // 1. Vérifier le token Google
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance())
                 .setAudience(Collections.singletonList(googleClientId))
-                // Vous pouvez ajouter .setIssuer("https://accounts.google.com") pour plus de sécurité
                 .build();
 
         GoogleIdToken idToken = verifier.verify(googleIdTokenString);
@@ -110,37 +107,29 @@ public class UserService {
             if (user.getGoogleId() == null) {
                 user.setGoogleId(userId);
             }
-            // S'assurer que le provider est bien GOOGLE s'il se connecte via Google
             user.setAuthProvider(User.AuthProvider.GOOGLE);
-            // Optionnel: Mettre à jour le nom si besoin
-            // user.setUsername(name); // Attention si username doit être unique et différent du nom
-            user = userRepository.save(user); // Sauvegarder les mises à jour éventuelles
+            user = userRepository.save(user);
         } else {
             // Nouvel utilisateur
             user = new User();
             user.setEmail(email);
             user.setGoogleId(userId);
             user.setAuthProvider(User.AuthProvider.GOOGLE);
-            // Générer un username unique (à adapter selon vos règles)
             user.setUsername(generateUniqueUsername(email, name));
-            // Générer un mot de passe aléatoire haché car non applicable pour Google Login
-            // Cela évite d'avoir un champ 'password' null si la contrainte DB/JPA l'exige
             user.setPassword(passwordEncoder.encode(UUID.randomUUID().toString()));
 
             user = userRepository.save(user);
         }
 
-        // 4. Générer le token JWT de VOTRE application
-        // On utilise UserDetailsServiceImpl pour charger les détails formatés pour Spring Security
         final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
         return jwtService.generateToken(userDetails);
     }
 
     // --- Méthode utilitaire pour générer un username unique (exemple basique) ---
     private String generateUniqueUsername(String email, String name) {
-        String baseUsername = email.split("@")[0]; // Prend la partie avant @
+        String baseUsername = email.split("@")[0]; 
         if (name != null && !name.trim().isEmpty()) {
-            baseUsername = name.replaceAll("\\s+", "").toLowerCase(); // Utilise le nom sans espace
+            baseUsername = name.replaceAll("\\s+", "").toLowerCase(); // le nom sans espace
         }
 
         String finalUsername = baseUsername;

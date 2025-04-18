@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
-@RequestMapping("/api") // Base path for API endpoints
+@RequestMapping("/api")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
@@ -39,17 +39,14 @@ public class UserController {
         // @Valid triggers validation based on annotations in UserRegistrationDto
         try {
             User registeredUser = userService.registerNewUser(registrationDto);
-            // Don't return the password hash in the response!
-            // You might return a simplified success message or a DTO without sensitive info.
             Map<String, Object> response = new HashMap<>();
             response.put("message", "User registered successfully!");
             response.put("userId", registeredUser.getId());
             response.put("username", registeredUser.getUsername());
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (UserAlreadyExistsException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage()); // 409 Conflict
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage()); 
         } catch (Exception e) {
-            // Log the exception e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred.");
         }
     }
@@ -64,10 +61,10 @@ public class UserController {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName, errorMessage);
         });
-        return errors; // Returns a map of field -> error message
+        return errors; 
     }
 
-    @ResponseStatus(HttpStatus.CONFLICT) // 409
+    @ResponseStatus(HttpStatus.CONFLICT) 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public Map<String, String> handleUserAlreadyExistsException(UserAlreadyExistsException ex) {
         Map<String, String> error = new HashMap<>();

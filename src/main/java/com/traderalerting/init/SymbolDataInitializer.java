@@ -62,7 +62,6 @@ public class SymbolDataInitializer implements CommandLineRunner {
         } else {
             log.info("{} symboles déjà présents dans la base de données.", symbolRepository.count());
             
-            // Vérifier si AIR.PA existe spécifiquement (car c'est celui qui cause des problèmes)
             boolean airExists = symbolRepository.existsByTicker("AIR.PA");
             log.info("Le symbole AIR.PA existe-t-il? {}", airExists);
             

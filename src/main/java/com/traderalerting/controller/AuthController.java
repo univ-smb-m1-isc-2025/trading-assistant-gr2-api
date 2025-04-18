@@ -15,7 +15,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.http.HttpStatus;
-// import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -27,7 +26,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService; // Utilisez l'interface
+    private UserService userService; 
 
     @Autowired
     private JwtService jwtService;
@@ -35,7 +34,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         try {
-            // Tente l'authentification via Spring Security
+            // authentification via Spring Security
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             loginRequest.getUsernameOrEmail(),
@@ -45,11 +44,6 @@ public class AuthController {
             // On récupère les UserDetails pour générer le token
             // Note : Le principal de l'objet Authentication EST l'UserDetails
             final UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-            // Alternative : recharger explicitement si nécessaire (normalement pas utile
-            // ici)
-            // final UserDetails userDetails =
-            // userDetailsService.loadUserByUsername(loginRequest.getUsernameOrEmail());
 
             final String jwt = jwtService.generateToken(userDetails);
 
@@ -66,7 +60,7 @@ public class AuthController {
         }
     }
 
-    @PostMapping("/auth/google") // ou /login/google
+    @PostMapping("/auth/google") 
     public ResponseEntity<?> authenticateWithGoogle(@Valid @RequestBody GoogleTokenDto googleTokenDto) {
         try {
             String appToken = userService.processGoogleToken(googleTokenDto.getToken());
@@ -75,7 +69,7 @@ public class AuthController {
             // Erreur de validation du token Google ou email non vérifié
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Google authentication failed: " + e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace(); // Loggez l'erreur serveur complète
+            e.printStackTrace(); 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An internal error occurred during Google authentication.");
         }
     }

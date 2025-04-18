@@ -31,7 +31,6 @@ class MovingAverageCrossoverServiceTest {
 
     @BeforeEach
     void setUp() throws JSONException {
-        // Create mock response with price data and timestamps
         mockHistoricalData = new JSONObject();
         JSONObject chart = new JSONObject();
         JSONArray result = new JSONArray();

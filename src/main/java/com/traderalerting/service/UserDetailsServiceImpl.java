@@ -1,6 +1,6 @@
 package com.traderalerting.service;
 
-import com.traderalerting.entity.User; // Votre entité User
+import com.traderalerting.entity.User;
 import com.traderalerting.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList; // Pour les rôles/autorités (vide pour l'instant)
+import java.util.ArrayList; 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -20,23 +20,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired 
     public UserDetailsServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository; // Injection via le constructeur
+        this.userRepository = userRepository; 
     }
 
     @Override
-    @Transactional(readOnly = true) // Important pour les opérations de lecture liées à JPA
+    @Transactional(readOnly = true) 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // Trouver l'utilisateur par username OU email
         User user = userRepository.findByUsername(username)
-                .orElseGet(() -> userRepository.findByEmail(username) // Essaie aussi par email
+                .orElseGet(() -> userRepository.findByEmail(username) 
                         .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username or email: " + username)));
 
-        // Convertir votre entité User en UserDetails de Spring Security
-        // Le troisième argument est la liste des autorités (rôles), vide pour le moment
+        // Convertir l'entité User en UserDetails de Spring Security
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(), // Le mot de passe HACHÉ de la base de données
-                new ArrayList<>() // Liste vide d'autorités pour commencer
+                new ArrayList<>() 
         );
     }
 }

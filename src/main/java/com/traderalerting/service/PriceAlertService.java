@@ -40,7 +40,6 @@ public class PriceAlertService {
         JSONObject indicators = result.getJSONObject("indicators");
         JSONArray closeData = indicators.getJSONArray("quote").getJSONObject(0).getJSONArray("close");
         
-        // Vérifier qu'il y a assez de données pour l'analyse
         if (closeData.length() < days) {
             return new PriceVariationResult(symbol, false, 0, 0, 0, 
                     "Données insuffisantes: " + closeData.length() + " jours disponibles sur " + days + " requis");

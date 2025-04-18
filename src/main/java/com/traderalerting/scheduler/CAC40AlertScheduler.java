@@ -250,7 +250,6 @@ private void sendEmailNotifications(Map<String, Map<String, Object>> alertResult
         try {
             List<String> dojiDates = candlePatternService.detectDragonflyDoji(symbol, RANGE);
             
-            // Vérifier si un Dragonfly Doji a été détecté aujourd'hui
             boolean hasTodayDoji = dojiDates.contains(LocalDate.now().toString());
             
             Map<String, Object> alertInfo = new HashMap<>();

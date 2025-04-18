@@ -32,10 +32,9 @@ public class PriceAlertServiceTest {
 
     @Test
     public void testVariationExceedsThreshold() throws IOException, JSONException {
-        // Créer des données de test simulant une forte variation
+        // test simulant une forte variation
         JSONObject mockResponse = createMockStockData(new double[]{100.0, 105.0, 110.0, 120.0, 130.0});
         
-        // Configurer le mock pour retourner nos données de test
         when(yahooFinanceService.getStockHistory(anyString(), anyString())).thenReturn(mockResponse);
         
         // Appeler le service avec un seuil de 20%
@@ -51,10 +50,9 @@ public class PriceAlertServiceTest {
 
     @Test
     public void testVariationBelowThreshold() throws IOException, JSONException {
-        // Créer des données de test simulant une faible variation
+        // test simulant une faible variation
         JSONObject mockResponse = createMockStockData(new double[]{100.0, 102.0, 101.0, 103.0, 104.0});
         
-        // Configurer le mock
         when(yahooFinanceService.getStockHistory(anyString(), anyString())).thenReturn(mockResponse);
         
         // Appeler le service avec un seuil de 10%
@@ -69,13 +67,11 @@ public class PriceAlertServiceTest {
 
     @Test
     public void testInsufficientData() throws IOException, JSONException {
-        // Créer des données de test avec peu de points
+        // test avec peu de points
         JSONObject mockResponse = createMockStockData(new double[]{100.0});
         
-        // Configurer le mock
         when(yahooFinanceService.getStockHistory(anyString(), anyString())).thenReturn(mockResponse);
         
-        // Appeler le service en demandant plus de jours que disponibles
         PriceVariationResult result = priceAlertService.checkPriceVariation("GOOG", 5, 10.0);
         
         // Vérifier que le service gère correctement le manque de données
@@ -85,13 +81,11 @@ public class PriceAlertServiceTest {
 
     @Test
     public void testNullValues() throws IOException, JSONException {
-        // Créer un mock avec des valeurs nulles (ce qui peut arriver dans l'API Yahoo)
+        // Créer un mock avec des valeurs nulles
         JSONObject mockResponseWithNulls = createMockStockDataWithNulls();
         
-        // Configurer le mock
         when(yahooFinanceService.getStockHistory(anyString(), anyString())).thenReturn(mockResponseWithNulls);
         
-        // Appeler le service
         PriceVariationResult result = priceAlertService.checkPriceVariation("AMZN", 5, 15.0);
         
         // Vérifier que le service gère correctement les valeurs nulles
@@ -153,7 +147,7 @@ public class PriceAlertServiceTest {
         // Timestamps
         JSONArray timestamps = new JSONArray();
         long currentTime = System.currentTimeMillis() / 1000;
-        for (int i = 0; i < 5; i++) {  // Créons 5 timestamps
+        for (int i = 0; i < 5; i++) {  
             timestamps.put(currentTime - (86400 * (5 - i - 1)));
         }
         resultItem.put("timestamp", timestamps);

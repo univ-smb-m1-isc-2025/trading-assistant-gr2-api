@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GoogleTokenDto {
     @NotBlank(message = "Google token cannot be blank")
-    private String token; // Recevra le credential (ID token) envoyé par le frontend
+    private String token; 
 }

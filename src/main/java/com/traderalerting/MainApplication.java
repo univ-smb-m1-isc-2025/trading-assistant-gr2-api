@@ -2,8 +2,8 @@ package com.traderalerting;
 
 import com.traderalerting.dto.AddFavoriteRequest;
 import com.traderalerting.service.FavoriteService;
-import org.slf4j.Logger; // <- Correction ici
-import org.slf4j.LoggerFactory; // <- Correction ici
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +14,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map; // <- Correction ici
+import java.util.Map; 
 
 @SpringBootApplication
 @EnableScheduling

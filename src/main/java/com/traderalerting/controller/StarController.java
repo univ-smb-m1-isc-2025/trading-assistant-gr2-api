@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/star") // Utiliser un nom complètement différent
+@RequestMapping("/api/star") 
 public class StarController {
 
     private static final Logger log = LoggerFactory.getLogger(StarController.class);

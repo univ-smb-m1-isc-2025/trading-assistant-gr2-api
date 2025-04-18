@@ -99,7 +99,6 @@ class StockAlertServiceTest {
 
     @Test
     void hasStockIncreasedByPercentage_shouldHandleEdgeCases() throws IOException, JSONException {
-        // Test with exactly the threshold percentage
         JSONArray closePrices = mockStockHistory.getJSONObject("chart")
                 .getJSONArray("result").getJSONObject(0)
                 .getJSONObject("indicators").getJSONArray("quote")

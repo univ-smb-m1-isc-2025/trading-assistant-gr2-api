@@ -16,7 +16,6 @@ public class AlertThresholdService {
     }
 
     public JSONObject checkAlert(String symbol, double threshold) throws IOException {
-        // Utiliser le service Yahoo Finance injecté au lieu d'appeler HTTP directement
         JSONObject json = yahooFinanceService.getStockHistory(symbol, "1d");
 
         JSONArray closePrices = json

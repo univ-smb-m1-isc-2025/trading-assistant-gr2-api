@@ -176,7 +176,7 @@ public class MovingAverageCrossoverService {
         List<Double> movingAverages = new ArrayList<>();
         
         if (period > prices.length()) {
-            return movingAverages; // Return empty list if not enough data
+            return movingAverages; 
         }
         
         for (int i = period - 1; i < prices.length(); i++) {
@@ -193,7 +193,7 @@ public class MovingAverageCrossoverService {
             if (validPoints > 0) {
                 movingAverages.add(sum / validPoints);
             } else {
-                movingAverages.add(null); // No valid data points for this period
+                movingAverages.add(null); 
             }
         }
         
